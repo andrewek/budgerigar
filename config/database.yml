@@ -1,0 +1,29 @@
+# Database Settings
+#
+# We're linking to the Postgres docker container, which we define in
+# docker-compose.yml as 'postgres' -- simple, yet effective
+
+default: &default
+  adapter: postgresql
+  pool: 25
+  encoding: unicode
+
+development:
+  <<: *default
+  database: budgerigar_dev
+  host: postgres
+  port: 5432
+  username: postgres
+  password: super
+
+test:
+  <<: *default
+  database: budgerigar_test
+  host: postgres
+  port: 5432
+  username: postgres
+  password: super
+
+# TODO: fill this in once we have a sense of our deploy environment
+production:
+  <<: *default

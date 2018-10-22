@@ -1,0 +1,27 @@
+version: '3'
+services:
+  budgie:
+    command: 'bundle exec puma -C config/puma.rb'
+    build: .
+    volumes:
+      - .:/budgerigar
+    ports:
+      - '3000:3000'
+    environment:
+      RAILS_ENV: development
+      RACK_ENV: development
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:latest
+    ports:
+      - '5432:5432'
+    volumes:
+      - postgres_volume:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: super
+
+volumes:
+  postgres_volume:
