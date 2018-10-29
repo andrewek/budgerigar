@@ -38,19 +38,8 @@ $ docker-compose run RAILS_ENV=test rails db:create
 $ docker-compose run RAILS_ENV=test rails db:migrate
 ```
 
-And you can run the linter like this:
-
-```shell
-$ docker-compose run budgie pronto run`
-```
-
 (Note: this compares whatever you've currently got committed against the latest
 Master branch, so it won't work quite the way you want when you're on the master
 branch or if you're wanting to inspect uncommitted or unstaged changes)
 
-There's also a [Postman](https://getpostman.com) collection. This is the easiest
-way to interact with the application.
-
-## Deployment
-
-TODO: Write this section
+You can interact with Budgerigar through Postman - `localhost:3000`
