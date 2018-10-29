@@ -4,12 +4,13 @@ An API-driven YNAB clone, hopefully as charismatic as its namesake.
 
 ## Core User Stories
 
-1. As a user, I want to budget by categories
+1. As a user, I want to allocate amounts by category.
 2. As a user, I want to know if I am over budget in one or more categories
-3. As a user, I want to manually manage (add, update, delete, categorize)
-   debits to my account
-4. As a user, I want to view a spending summary for a given time period
-5. As a user, I want to filter transactions by amount, category, date, and payee
+3. As a user, I want to manually manage (add, update, delete) debits to my
+   account
+4. As a user, I want to view a spending summary for a given time period.
+5. As a user, I want to filter transactions by amount, category, date, and
+   payee.
 
 ## Getting Started
 

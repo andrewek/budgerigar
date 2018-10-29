@@ -41,9 +41,7 @@ module Categories
     end
 
     def no_description_error
-      UnprocessableEntity.new( {
-        errors: ['Missing a Description']
-      }, self)
+      UnprocessableEntity.new('Missing a Description', self)
     end
   end
 end

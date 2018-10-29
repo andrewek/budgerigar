@@ -37,9 +37,7 @@ module Categories
     end
 
     def no_uuid_error
-      UnprocessableEntity.new( {
-        errors: ['Cannot fetch by ID without an ID']
-      }, self)
+      UnprocessableEntity.new('You must provide an ID with which to fetch a category', self)
     end
   end
 end
