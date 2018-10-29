@@ -26,6 +26,9 @@ class Debit < ApplicationRecord
 
   before_create :generate_uuid
 
+  scope :created_before, ->(end_date) { where('created_at <= ?', DateTime.parse(end_date).end_of_day) }
+  scope :created_after, ->(start_date) { where('created_at >= ?', DateTime.parse(start_date).beginning_of_day) }
+
   private
 
   # Prior to creation, we assign a UUID unless one has been provided for us

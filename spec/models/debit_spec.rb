@@ -24,6 +24,12 @@ RSpec.describe Debit, type: :model do
     ).perform.record
   end
 
+  describe '.created_after' do
+  end
+
+  describe '.created_before' do
+  end
+
   describe '.create' do
     let(:params) do
       {
