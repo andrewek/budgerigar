@@ -24,7 +24,7 @@ module Categories
     private
 
     def success_response
-      Success.new(@category, self, CategorySerializer, { include: [:debits, :'debits.uuid']})
+      Created.new(@category, self, CategorySerializer)
     end
 
     def failure_response
