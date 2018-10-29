@@ -12,7 +12,7 @@ class CategoriesController < ApplicationController
   end
 
   def index
-    result = Categories::List.new(params: params).perform
+    result = Categories::Index.new(params: params).perform
     rendur result
   end
 
