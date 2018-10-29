@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_29_025804) do
+ActiveRecord::Schema.define(version: 2018_10_29_104350) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,18 @@ ActiveRecord::Schema.define(version: 2018_10_29_025804) do
     t.uuid "uuid"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "debits", force: :cascade do |t|
+    t.string "payee"
+    t.integer "amount"
+    t.integer "category_id"
+    t.uuid "uuid"
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_debits_on_category_id"
+    t.index ["payee"], name: "index_debits_on_payee"
   end
 
 end

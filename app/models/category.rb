@@ -12,15 +12,28 @@
 
 class Category < ApplicationRecord
   has_many :allocations, inverse_of: :category
+  has_many :debits, inverse_of: :category
 
   validates :description, uniqueness: { case_sensitive: false }, presence: true
 
-  before_save :generate_uuid
+  before_create :generate_uuid
 
   scope :active, -> { where(active: true) }
 
+  def overspent?
+    available_amount < 0
+  end
+
+  def available_amount
+    allocated_sum - spent_sum
+  end
+
   def allocated_sum
-    self.allocations.sum(:amount)
+    @allocated_sum ||= allocations.sum(:amount)
+  end
+
+  def spent_sum
+    @spent_sum ||= debits.sum(:amount)
   end
 
   private

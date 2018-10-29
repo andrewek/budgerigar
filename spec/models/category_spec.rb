@@ -95,4 +95,82 @@ RSpec.describe Category, type: :model do
       end
     end
   end
+
+  describe '#available_amount' do
+    context 'with no allocations' do
+      it 'computes correctly' do
+        category = Category.create!(description: 'Badgers')
+        expect(category.available_amount).to be_zero
+      end
+    end
+
+    context 'with allocations and no debits' do
+      it 'computes correctly' do
+        category = Category.create!(description: 'Badgers')
+        Allocation.create!(amount: 100, category: category)
+        Allocation.create!(amount: 1000, category: category)
+
+        expect(category.available_amount).to eq(1100)
+      end
+    end
+
+    context 'with allocations and debits' do
+      it 'computes correctly' do
+        category = Category.create!(description: 'Badgers')
+        Allocation.create!(amount: 1000, category: category)
+        Debit.create!(amount: 500, category: category, description: 'Hats', payee: 'Hats Inc.')
+
+        expect(category.available_amount).to eq(500)
+      end
+    end
+
+    context 'when overspent' do
+      it 'computes correctly' do
+        category = Category.create!(description: 'Badgers')
+        Allocation.create!(amount: 1000, category: category)
+        Debit.create!(amount: 5000, category: category, description: 'Hats', payee: 'Hats Inc.')
+
+        expect(category.available_amount).to eq(-4000)
+      end
+    end
+  end
+
+  describe '#overspent?' do
+    context 'with no allocations' do
+      it 'computes correctly' do
+        category = Category.create!(description: 'Badgers')
+        expect(category).not_to be_overspent
+      end
+    end
+
+    context 'with allocations and no debits' do
+      it 'computes correctly' do
+        category = Category.create!(description: 'Badgers')
+        Allocation.create!(amount: 100, category: category)
+        Allocation.create!(amount: 1000, category: category)
+
+        expect(category).not_to be_overspent
+      end
+    end
+
+    context 'with allocations and debits' do
+      it 'computes correctly' do
+        category = Category.create!(description: 'Badgers')
+        Allocation.create!(amount: 1000, category: category)
+        Debit.create!(amount: 500, category: category, description: 'Hats', payee: 'Hats Inc.')
+
+        expect(category).not_to be_overspent
+      end
+    end
+
+    context 'when overspent' do
+      it 'computes correctly' do
+        category = Category.create!(description: 'Badgers')
+        Allocation.create!(amount: 1000, category: category)
+        Debit.create!(amount: 5000, category: category, description: 'Hats', payee: 'Hats Inc.')
+
+        expect(category).to be_overspent
+      end
+    end
+  end
 end

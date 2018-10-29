@@ -16,4 +16,14 @@ class CategorySerializer
   set_id :uuid
 
   attributes :description, :active
+
+  attribute :available_amount do |obj|
+    obj.allocated_sum - obj.spent_sum
+  end
+
+  attribute :overspent do |obj|
+    obj.overspent?
+  end
+
+  has_many :debits, serializer: DebitSerializer, id_method_name: :uuid
 end
