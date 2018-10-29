@@ -9,8 +9,7 @@ An API-driven YNAB clone, hopefully as charismatic as its namesake.
 3. As a user, I want to manually manage (add, update, delete) debits to my
    account
 4. As a user, I want to view a spending summary for a given time period.
-5. As a user, I want to filter transactions by amount, category, date, and
-   payee.
+5. As a user, I want to filter transactions by category, date, and payee.
 
 ## Getting Started
 
