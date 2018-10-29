@@ -12,7 +12,7 @@ class TransactionsController < ApplicationController
   end
 
   def index
-    result = Debits::Index.new(params: params).perform
+    result = Debits::List.new(params: params).perform
     rendur result
   end
 

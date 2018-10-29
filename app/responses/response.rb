@@ -3,7 +3,7 @@
 # This is our semi-abstract base class. We should only need to override private
 # methods on child classes.
 class Response
-  attr_reader :source, :record, :serializer
+  attr_reader :source, :record, :serializer, :options
 
   # Constructor:
   #
@@ -12,11 +12,13 @@ class Response
   #            made/modified with our operation.
   # + source - the operation itself
   # + serializer - Class constant, used for serialization
+  # + options - not used yet
   #
-  def initialize(record, source, serializer)
+  def initialize(record, source, serializer, options = {})
     @record = record
     @source = source
     @serializer = serializer
+    @options = {}
   end
 
   # Get back a serialized JSON hash

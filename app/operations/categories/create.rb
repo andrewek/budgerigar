@@ -11,7 +11,7 @@ module Categories
     end
 
     def perform
-      @category = Category.new(@params.slice(:description))
+      @category = Category.new(description: @params[:description])
 
       if @category.valid?
         @category.save
@@ -24,15 +24,11 @@ module Categories
     private
 
     def success_response
-      Created.new(@category, self, serializer)
+      Success.new(@category, self, CategorySerializer, { include: [:debits, :'debits.uuid']})
     end
 
     def failure_response
       Failure.new(@category.errors.messages, self)
-    end
-
-    def serializer
-      CategorySerializer
     end
   end
 end

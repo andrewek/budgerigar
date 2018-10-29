@@ -29,5 +29,5 @@ class DebitSerializer
     obj.created_at.strftime('%Y-%m-%d')
   end
 
-  belongs_to :category, serializer: CategorySerializer, id_method_name: :uuid
+  belongs_to :category, serializer: CategorySerializer
 end

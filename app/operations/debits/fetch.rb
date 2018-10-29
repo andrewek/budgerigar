@@ -11,7 +11,7 @@ module Debits
     def perform
       return missing_id_error unless @params[:id].present?
 
-      @debit = Debit.find_by_uuid(@params[:id])
+      @debit = Debit.find_by_uuid(@params[:id]) || Debit.find_by_id(@params[:id])
 
       return not_found_error unless @debit.present?
       success_response

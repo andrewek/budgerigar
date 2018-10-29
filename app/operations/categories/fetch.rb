@@ -13,7 +13,7 @@ module Categories
       uuid = @params[:id]
       return no_uuid_error unless uuid.present?
 
-      @category = Category.find_by_uuid(uuid)
+      @category = Category.find_by_uuid(uuid) || Category.find_by_id(uuid)
 
       if @category.present?
         success_response
@@ -24,12 +24,8 @@ module Categories
 
     private
 
-    def serializer
-      CategorySerializer
-    end
-
     def success_response
-      Success.new(@category, self, serializer)
+      Success.new(@category, self, CategorySerializer, { include: [:debits, :'debits.uuid']})
     end
 
     def not_found_response

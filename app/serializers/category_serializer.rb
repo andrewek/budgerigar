@@ -25,5 +25,5 @@ class CategorySerializer
     obj.overspent?
   end
 
-  has_many :debits, serializer: DebitSerializer, id_method_name: :uuid
+  has_many :debits, serializer: DebitSerializer
 end
