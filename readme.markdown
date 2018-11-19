@@ -18,7 +18,7 @@ started with the application should be as easy as:
 
 ```shell
 $ docker-compose build
-$ docker-compose run rails db:setup
+$ docker-compose run budgie rails db:setup
 $ docker-compose up
 ```
 
